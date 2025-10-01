@@ -17,6 +17,15 @@ public class WelcomePageFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         //todo#9 /요청이 오면 welcome page인 index.do redirect 합니다.
+        String requestURI = req.getRequestURI();
+        String contextPath = req.getContextPath();
 
+        // "/" 요청인 경우
+        if("/".equals(req.getRequestURI())) {
+            res.sendRedirect("/index.do");
+            return;
+        }
+
+        chain.doFilter(req,res);
     }
 }
