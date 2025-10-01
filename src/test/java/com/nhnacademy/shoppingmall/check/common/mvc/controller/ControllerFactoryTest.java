@@ -27,6 +27,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //todo#5-6 테스트 코드가 통과하도록 ControllerFactory를 구현합니다.
 
 @Slf4j
@@ -52,7 +54,7 @@ class ControllerFactoryTest {
         Try<Object> s =  ReflectionUtils.tryToReadFieldValue(ControllerFactory.class,"beanMap",controllerFactory);
         ConcurrentMap<String,Object> beanMap = (ConcurrentMap<String, Object>) s.get();
         Assertions.assertAll(
-                ()->Assertions.assertEquals(3,beanMap.size()),
+                ()-> assertEquals(3,beanMap.size()),
                 ()->Assertions.assertInstanceOf(IndexController.class,beanMap.get("GET-/index.do")),
                 ()->Assertions.assertInstanceOf(LoginController.class,beanMap.get("GET-/login.do")),
                 ()->Assertions.assertInstanceOf(LoginPostController.class,beanMap.get("POST-/loginAction.do"))
@@ -92,8 +94,8 @@ class ControllerFactoryTest {
 
         Method method = ControllerFactory.class.getDeclaredMethod("getKey", String.class,String.class );
         method.setAccessible(true);
-        String key = (String) method.invoke(controllerFactory,paramMethod,paramPath);
-        Assertions.assertEquals(String.format("%s-%s",paramMethod,paramPath),key);
+        String key = (String) method.invoke(controllerFactory,paramMethod,paramPath); // "GET", "/index.do"
+        assertEquals(String.format("%s-%s",paramMethod,paramPath),key);
     }
 
 

@@ -1,4 +1,6 @@
 package com.nhnacademy.shoppingmall.common.mvc.view;
+
+
 public class ViewResolver {
 
     public static final String DEFAULT_PREFIX="/WEB-INF/views/";

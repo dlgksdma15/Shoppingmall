@@ -12,6 +12,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 //todo#3-8 Test Code가 통과하도록 UserRepositoryImpl를 구현합니다.
 
 @Slf4j
@@ -39,7 +41,7 @@ class UserRepositoryImplTest {
     @DisplayName("로그인: user 조회 by userId and userPassword")
     void findByUserIdAndUserPassword() {
         Optional<User> userOptional = userRepository.findByUserIdAndUserPassword(testUser.getUserId(),testUser.getUserPassword());
-        Assertions.assertEquals(testUser,userOptional.get());
+        assertEquals(testUser,userOptional.get());
     }
 
     @Test
@@ -51,7 +53,7 @@ class UserRepositoryImplTest {
         String password="' or '1'='1";
         Optional<User> userOptional = userRepository.findByUserIdAndUserPassword(testUser.getUserId(),password);
         log.debug("user:{}",userOptional.orElse(null));
-        Assertions.assertFalse(userOptional.isPresent());
+        assertFalse(userOptional.isPresent());
     }
 
     @Test
@@ -59,7 +61,7 @@ class UserRepositoryImplTest {
     @DisplayName("user 조회 by uerId")
     void findById() {
         Optional<User> userOptional = userRepository.findById(testUser.getUserId());
-        Assertions.assertEquals(testUser,userOptional.get());
+        assertEquals(testUser,userOptional.get());
     }
 
     @Test
@@ -68,9 +70,9 @@ class UserRepositoryImplTest {
     void save() {
         User newUser = new User("nhnacademy-test-user2","nhn아카데미2","nhnacademy-test-password2","19900502", User.Auth.ROLE_USER,100_0000,LocalDateTime.now(),null);
         int result = userRepository.save(newUser);
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(1,result),
-                ()->Assertions.assertEquals(newUser, userRepository.findById(newUser.getUserId()).get())
+        assertAll(
+                ()-> assertEquals(1,result),
+                ()-> assertEquals(newUser, userRepository.findById(newUser.getUserId()).get())
         );
     }
 
@@ -79,10 +81,10 @@ class UserRepositoryImplTest {
     @DisplayName("user 중복 등록 - 제약조건 확인")
     void save_duplicate_user_id() {
 
-        Throwable throwable = Assertions.assertThrows(RuntimeException.class,()->{
+        Throwable throwable = assertThrows(RuntimeException.class,()->{
             userRepository.save(testUser);
         });
-        Assertions.assertTrue(throwable.getMessage().contains(SQLIntegrityConstraintViolationException.class.getName()));
+        assertTrue(throwable.getMessage().contains(SQLIntegrityConstraintViolationException.class.getName()));
         log.debug("errorMessage:{}", throwable.getMessage());
     }
 
@@ -91,9 +93,9 @@ class UserRepositoryImplTest {
     @DisplayName("user 삭제")
     void deleteByUserId() {
         int result = userRepository.deleteByUserId(testUser.getUserId());
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(1,result),
-                ()->Assertions.assertFalse(userRepository.findById(testUser.getUserId()).isPresent())
+        assertAll(
+                ()-> assertEquals(1,result),
+                ()-> assertFalse(userRepository.findById(testUser.getUserId()).isPresent())
         );
     }
 
@@ -108,9 +110,9 @@ class UserRepositoryImplTest {
         testUser.setUserPassword("new-password");
 
         int result = userRepository.update(testUser);
-        Assertions.assertAll(
-                ()-> Assertions.assertEquals(1,result),
-                ()-> Assertions.assertEquals(testUser, userRepository.findById(testUser.getUserId()).get())
+        assertAll(
+                ()-> assertEquals(1,result),
+                ()-> assertEquals(testUser, userRepository.findById(testUser.getUserId()).get())
         );
     }
 
@@ -119,6 +121,6 @@ class UserRepositoryImplTest {
     @DisplayName("최근 로그인시간 update")
     void updateLatestLoginAtByUserId() {
         int result = userRepository.updateLatestLoginAtByUserId(testUser.getUserId(),LocalDateTime.now());
-        Assertions.assertEquals(1,result);
+        assertEquals(1,result);
     }
 }

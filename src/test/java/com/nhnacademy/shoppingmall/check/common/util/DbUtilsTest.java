@@ -7,6 +7,8 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 //todo#2 - connection-pool test
 
 @Slf4j
@@ -17,7 +19,7 @@ class DbUtilsTest {
     @Order(1)
     @DisplayName("instance of dbcp2")
     void connection_close() throws SQLException {
-        Assertions.assertInstanceOf(BasicDataSource.class, DbUtils.getDataSource());
+        assertInstanceOf(BasicDataSource.class, DbUtils.getDataSource());
     }
 
     @Test
@@ -28,7 +30,7 @@ class DbUtilsTest {
         try {
             Class<?> driver = Class.forName(driverClassName);
             log.info("driver:{}", driver.getName());
-            Assertions.assertEquals(driver.getName(),driverClassName);
+            assertEquals(driver.getName(),driverClassName);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -39,7 +41,7 @@ class DbUtilsTest {
     @DisplayName("mysql connect")
     void my_connect() throws SQLException {
         Connection connection = DbUtils.getDataSource().getConnection();
-        Assertions.assertTrue(connection.isValid(2));
+        assertTrue(connection.isValid(2));
     }
 
     @Test
@@ -47,11 +49,11 @@ class DbUtilsTest {
     @DisplayName("테스트를 위한 pool-size:5 설정, maxIdle, maxTotal, initialSize, minIdle")
     void connection_pool_size(){
         BasicDataSource basicDataSource = (BasicDataSource) DbUtils.getDataSource();
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(5,basicDataSource.getMaxIdle()),
-                ()->Assertions.assertEquals(5,basicDataSource.getMaxTotal()),
-                ()->Assertions.assertEquals(5,basicDataSource.getInitialSize()),
-                ()->Assertions.assertEquals(5,basicDataSource.getMinIdle())
+        assertAll(
+                ()-> assertEquals(5,basicDataSource.getMaxIdle()),
+                ()-> assertEquals(5,basicDataSource.getMaxTotal()),
+                ()-> assertEquals(5,basicDataSource.getInitialSize()),
+                ()-> assertEquals(5,basicDataSource.getMinIdle())
         );
     }
 
