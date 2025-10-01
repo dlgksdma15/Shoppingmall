@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.function.Try;
 import org.junit.platform.commons.util.ReflectionUtils;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //todo#6-5 테스트가 통과하도록 ViewResolver를 구현합니다.
 class ViewResolverTest {
     final ViewResolver viewResolver = new ViewResolver();
@@ -20,9 +23,9 @@ class ViewResolverTest {
         String prefix = (String) prefixField.get();
         String postfix = (String) postfixField.get();
 
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(ViewResolver.DEFAULT_PREFIX,prefix),
-                ()->Assertions.assertEquals(ViewResolver.DEFAULT_POSTFIX, postfix)
+        assertAll(
+                ()-> assertEquals(ViewResolver.DEFAULT_PREFIX,prefix),
+                ()-> assertEquals(ViewResolver.DEFAULT_POSTFIX, postfix)
         );
     }
 
@@ -30,38 +33,38 @@ class ViewResolverTest {
     void getPath() {
 
         String expected = "/WEB-INF/views/main/index.jsp";
-        Assertions.assertAll(
-                ()->Assertions.assertEquals(expected,viewResolver.getPath("main/index")),
-                ()->Assertions.assertEquals(expected,viewResolver.getPath("/main/index"))
+        assertAll(
+                ()-> assertEquals(expected,viewResolver.getPath("main/index")),
+                ()-> assertEquals(expected,viewResolver.getPath("/main/index"))
         );
     }
 
     @Test
     void isRedirect() {
-        Assertions.assertAll(
-                ()->Assertions.assertTrue(viewResolver.isRedirect("redirect:/index.do")),
-                ()->Assertions.assertTrue(viewResolver.isRedirect("REDIRECT:/login.do")),
-                ()->Assertions.assertTrue(viewResolver.isRedirect("ReDIrECT:/login.do")),
-                ()->Assertions.assertFalse(viewResolver.isRedirect("/main/index")),
-                ()->Assertions.assertFalse(viewResolver.isRedirect("/admin/producnt/list"))
+        assertAll(
+                ()-> assertTrue(viewResolver.isRedirect("redirect:/index.do")),
+                ()-> assertTrue(viewResolver.isRedirect("REDIRECT:/login.do")),
+                ()-> assertTrue(viewResolver.isRedirect("ReDIrECT:/login.do")),
+                ()-> assertFalse(viewResolver.isRedirect("/main/index")),
+                ()-> assertFalse(viewResolver.isRedirect("/admin/producnt/list"))
         );
     }
 
     @Test
     void getRedirectUrl() {
-        Assertions.assertAll(
-                ()->Assertions.assertEquals("/index.do",viewResolver.getRedirectUrl("redirect:/index.do")),
-                ()->Assertions.assertEquals("/login.do",viewResolver.getRedirectUrl("REDIRECT:/login.do")),
-                ()->Assertions.assertEquals("/admin/product/list.do", viewResolver.getRedirectUrl("ReDIrECT:/admin/product/list.do"))
+        assertAll(
+                ()-> assertEquals("/index.do",viewResolver.getRedirectUrl("redirect:/index.do")),
+                ()-> assertEquals("/login.do",viewResolver.getRedirectUrl("REDIRECT:/login.do")),
+                ()-> assertEquals("/admin/product/list.do", viewResolver.getRedirectUrl("ReDIrECT:/admin/product/list.do"))
         );
     }
 
     @Test
     void getLayOut() {
-        Assertions.assertAll(
-            ()->Assertions.assertEquals(ViewResolver.DEFAULT_ADMIN_LAYOUT, viewResolver.getLayOut("/admin/product/list")),
-            ()->Assertions.assertEquals(ViewResolver.DEFAULT_SHOP_LAYOUT, viewResolver.getLayOut("/mypage/product/list")),
-            ()->Assertions.assertEquals(ViewResolver.DEFAULT_SHOP_LAYOUT, viewResolver.getLayOut("/main/index"))
+        assertAll(
+            ()-> assertEquals(ViewResolver.DEFAULT_ADMIN_LAYOUT, viewResolver.getLayOut("/admin/product/list")),
+            ()-> assertEquals(ViewResolver.DEFAULT_SHOP_LAYOUT, viewResolver.getLayOut("/mypage/product/list")),
+            ()-> assertEquals(ViewResolver.DEFAULT_SHOP_LAYOUT, viewResolver.getLayOut("/main/index"))
         );
     }
 }
