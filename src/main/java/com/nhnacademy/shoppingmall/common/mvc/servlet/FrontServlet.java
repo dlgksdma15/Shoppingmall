@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
 
 @Slf4j
 @WebServlet(name = "frontServlet",urlPatterns = {"*.do"})
@@ -22,17 +23,19 @@ public class FrontServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         //todo#7-1 controllerFactory를 초기화 합니다.
-
+//        controllerFactory = new ControllerFactory();
+        controllerFactory = (ControllerFactory) getServletContext()
+                .getAttribute(ControllerFactory.CONTEXT_CONTROLLER_FACTORY_NAME);
 
         //todo#7-2 viewResolver를 초기화 합니다.
-
+        viewResolver = new ViewResolver();
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp){
         try{
             //todo#7-3 Connection pool로 부터 connection 할당 받습니다. connection은 Thread 내에서 공유됩니다.
-
+            DbConnectionThreadLocal.initialize();
 
             BaseController baseController = (BaseController) controllerFactory.getController(req);
             String viewName = baseController.execute(req,resp);
@@ -41,6 +44,7 @@ public class FrontServlet extends HttpServlet {
                 String redirectUrl = viewResolver.getRedirectUrl(viewName);
                 log.debug("redirectUrl:{}",redirectUrl);
                 //todo#7-6 redirect: 로 시작하면  해당 url로 redirect 합니다.
+                resp.sendRedirect(redirectUrl);
 
             }else {
                 String layout = viewResolver.getLayOut(viewName);
@@ -53,9 +57,10 @@ public class FrontServlet extends HttpServlet {
             log.error("error:{}",e);
             DbConnectionThreadLocal.setSqlError(true);
             //todo#7-5 예외가 발생하면 해당 예외에 대해서 적절한 처리를 합니다.
-
-        }finally {
+            System.err.println("Request processing failed" + e);
+        } finally {
             //todo#7-4 connection을 반납합니다.
+            DbConnectionThreadLocal.reset();
 
         }
     }
