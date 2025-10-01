@@ -28,6 +28,7 @@ public class LoginCheckFilter extends HttpFilter {
             return;
         }
 
+
         // 로그인 됨 -> 다음 필터/서블릿으로 진행
         chain.doFilter(req,res);
 
