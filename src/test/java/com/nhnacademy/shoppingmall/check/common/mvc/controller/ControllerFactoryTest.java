@@ -17,8 +17,8 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import org.mockito.Mockito;
 
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 import java.lang.reflect.InvocationTargetException;
