@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-
+@WebFilter("/*")
 public class WelcomePageFilter extends HttpFilter {
 
     @Override
