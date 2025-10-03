@@ -22,7 +22,7 @@ public class ViewResolver {
     }
 
     public String getPath(String viewName){
-        //todo#6-1  postfix+viewNAme+postfix 반환 합니다.
+        //todo#6-1  prefix+viewNAme+postfix 반환 합니다.
         if(viewName != null && viewName.startsWith("/")){
             viewName = viewName.toLowerCase().substring(1);
         }

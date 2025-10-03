@@ -25,8 +25,8 @@ public class DbUtils {
         //todo#1-1 {ip},{database},{username},{password} 설정
         //todo#1-2 initialSize, maxTotal, maxIdle, minIdle 은 모두 5로 설정합니다.
         //todo#1-3 Validation Query를 설정하세요
-        basicDataSource.setUrl("jdbc:mysql://10.116.64.14:13306/nhn_academy_32");
-//        basicDataSource.setUrl("jdbc:mysql://s4.java21.net:13306/nhn_academy_32");
+//        basicDataSource.setUrl("jdbc:mysql://10.116.64.14:13306/nhn_academy_32");
+        basicDataSource.setUrl("jdbc:mysql://s4.java21.net:13306/nhn_academy_32");
         basicDataSource.setUsername("nhn_academy_32");
         basicDataSource.setPassword("EJdrW!(bf]HjT9a5");
         basicDataSource.setInitialSize(5); // 최초 connection pool 시작될 때 초기 Connection 개수

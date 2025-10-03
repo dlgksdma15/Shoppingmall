@@ -7,12 +7,12 @@
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">
-                <input type="text" name="user_id" class="form-control" id="user_id" placeholder="회원 아이디" required>
+                <input type="text" name="userId" class="form-control" id="user_id" placeholder="회원 아이디" required>
                 <label for="user_id">회원아이디</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" name="user_password" class="form-control" id="user_password" placeholder="비밀번호" required>
+                <input type="password" name="userPassword" class="form-control" id="user_password" placeholder="비밀번호" required>
                 <label for="user_password">비밀번호</label>
             </div>
 

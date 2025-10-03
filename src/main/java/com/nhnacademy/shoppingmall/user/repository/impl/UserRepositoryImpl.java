@@ -31,7 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
             psmt.setString(1, userId);
             psmt.setString(2, userPassword);
 
-            ResultSet rs= psmt.executeQuery();
+            ResultSet rs = psmt.executeQuery();
             if (rs.next()) {
                 User user = new User(
                         rs.getString("user_id"),

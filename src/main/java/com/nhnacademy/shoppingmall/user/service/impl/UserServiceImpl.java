@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         User user = userOptional.get();
 
         userRepository.updateLatestLoginAtByUserId(userId,LocalDateTime.now());
-        userRepository.save(user);
+//        userRepository.save(user);
         return user;
     }
 

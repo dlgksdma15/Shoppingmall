@@ -14,7 +14,7 @@ public class LogoutController implements BaseController {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
 
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         if(session != null){
             session.invalidate();
         }
