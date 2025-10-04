@@ -9,7 +9,7 @@ include::{docdir}/../../src/main/java/com/nhnacademy/shoppingmall/user/service/U
 
 == UserServiceImpl
 
-* `UserService` 를 구현합니다.
+* `ProductService` 를 구현합니다.
 
 [source,java]
 ----

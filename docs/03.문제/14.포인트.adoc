@@ -12,7 +12,7 @@
 
 [source,java]
 ----
-include::../../src/main/resources/META-INF/services/javax.servlet.ServletContainerInitializer[]
+// include::../../src/main/resources/META-INF/services/javax.servlet.ServletContainerInitializer[]
 ----
 
 === PointThreadInitializer.java

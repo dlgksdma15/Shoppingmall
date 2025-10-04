@@ -27,6 +27,7 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/index.do" class="nav-link px-2 text-secondary">Home</a></li>
+                        <li><a href="/index.do" class="nav-link px-2 text-secondary">상품 등록</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">마이페이지</a></li>
                     </ul>
 
