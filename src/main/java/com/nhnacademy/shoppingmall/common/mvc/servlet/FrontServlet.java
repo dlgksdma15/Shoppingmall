@@ -13,7 +13,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
 
 @Slf4j
 @WebServlet(name = "frontServlet",urlPatterns = {"*.do"})
@@ -57,7 +56,7 @@ public class FrontServlet extends HttpServlet {
             if(viewResolver.isRedirect(viewName)){
                 String redirectUrl = viewResolver.getRedirectUrl(viewName);
                 log.debug("redirectUrl:{}",redirectUrl);
-                //todo#7-6 redirect: 로 시작하면  해당 url로 redirect 합니다.
+                //todo#7-6 redirect: 로 시작하면 해당 url로 redirect 합니다.
                 resp.sendRedirect(redirectUrl);
 
             }else {

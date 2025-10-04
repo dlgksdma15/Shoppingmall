@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" session="false" trimDirectiveWhitespaces="true" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" session="true" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
@@ -34,9 +34,21 @@
                         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                     </form>
 
+<%--                    <div class="text-end">--%>
+<%--                        <a class="btn btn-outline-light me-2" href="/login.do" >로그인</a>--%>
+<%--                        <a class="btn btn-warning" href="signup.do" >회원가입</a>--%>
+<%--                    </div>--%>
                     <div class="text-end">
-                        <a class="btn btn-outline-light me-2" href="/login.do" >로그인</a>
-                        <a class="btn btn-warning" href="signup.do" >회원가입</a>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.user}">
+                                <span class="text-white me-3">환영합니다, ${sessionScope.user.userId}님</span>
+                                <a class="btn btn-outline-light" href="/logout.do">로그아웃</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-outline-light me-2" href="/login.do">로그인</a>
+                                <a class="btn btn-warning" href="/signup.do">회원가입</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
