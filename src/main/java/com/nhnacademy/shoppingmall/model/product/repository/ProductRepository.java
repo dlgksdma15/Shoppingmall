@@ -1,6 +1,6 @@
-package com.nhnacademy.shoppingmall.product.repository;
+package com.nhnacademy.shoppingmall.model.product.repository;
 
-import com.nhnacademy.shoppingmall.product.domain.Product;
+import com.nhnacademy.shoppingmall.model.product.domain.Product;
 import java.util.List;
 import java.util.Optional;
 

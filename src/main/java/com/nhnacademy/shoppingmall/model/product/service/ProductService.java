@@ -1,9 +1,13 @@
-package com.nhnacademy.shoppingmall.product.service;
+package com.nhnacademy.shoppingmall.model.product.service;
 
-import com.nhnacademy.shoppingmall.product.domain.Product;
+import com.nhnacademy.shoppingmall.model.product.domain.Product;
+
+import java.util.List;
 
 public interface ProductService {
     Product getProduct(int productId);
+
+    List<Product> getProducts();
 
     void saveProduct(Product product);
 

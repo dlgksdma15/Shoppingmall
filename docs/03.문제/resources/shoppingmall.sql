@@ -34,8 +34,8 @@ CREATE TABLE Products (
                           user_id varchar(50) not null ,
                           category_id	INT not null ,
                           product_name	nvarchar(120) not null , -- 상품 이름
-                          product_number	nvarchar(10) not null , -- 상품 수량
-                          product_image	nvarchar(30) not null ,
+                          product_number	INT not null , -- 상품 수량
+                          product_image	nvarchar(255) not null ,
                           product_unit_cost	decimal(15),
                           product_description	text(100),
 
@@ -43,6 +43,7 @@ CREATE TABLE Products (
                           CONSTRAINT fk_Products_Users FOREIGN KEY(user_id) REFERENCES Users(user_id),
                           CONSTRAINT fk_Products_Categories FOREIGN KEY(category_id) REFERENCES Categories(category_id)
 );
+drop table Products;
 desc Products;
 CREATE TABLE Customers (
                            CustomerID	int auto_increment,
@@ -61,7 +62,7 @@ CREATE TABLE Reviews (
                          Comments	text,
 
                          CONSTRAINT pk_ReviewID PRIMARY KEY(ReviewID),
-                         CONSTRAINT fk_Review_Products FOREIGN KEY(ProductID) REFERENCES Products(ProductID),
+                         CONSTRAINT fk_Review_Products FOREIGN KEY(ProductID) REFERENCES Products(product_id),
                          CONSTRAINT fk_Review_Customer FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
 );
 

@@ -2,15 +2,13 @@ package com.nhnacademy.shoppingmall.controller.auth;
 
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
-import com.nhnacademy.shoppingmall.user.domain.User;
-import com.nhnacademy.shoppingmall.user.exception.UserAlreadyExistsException;
-import com.nhnacademy.shoppingmall.user.exception.UserNotFoundException;
-import com.nhnacademy.shoppingmall.user.repository.impl.UserRepositoryImpl;
-import com.nhnacademy.shoppingmall.user.service.UserService;
-import com.nhnacademy.shoppingmall.user.service.impl.UserServiceImpl;
+import com.nhnacademy.shoppingmall.model.user.domain.User;
+import com.nhnacademy.shoppingmall.model.user.exception.UserAlreadyExistsException;
+import com.nhnacademy.shoppingmall.model.user.repository.impl.UserRepositoryImpl;
+import com.nhnacademy.shoppingmall.model.user.service.UserService;
+import com.nhnacademy.shoppingmall.model.user.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;

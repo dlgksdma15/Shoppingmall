@@ -1,10 +1,11 @@
-package com.nhnacademy.shoppingmall.product.service.impl;
+package com.nhnacademy.shoppingmall.model.product.service.impl;
 
-import com.nhnacademy.shoppingmall.product.domain.Product;
-import com.nhnacademy.shoppingmall.product.exception.ProductNotFoundException;
-import com.nhnacademy.shoppingmall.product.repository.ProductRepository;
-import com.nhnacademy.shoppingmall.product.service.ProductService;
+import com.nhnacademy.shoppingmall.model.product.domain.Product;
+import com.nhnacademy.shoppingmall.model.product.exception.ProductNotFoundException;
+import com.nhnacademy.shoppingmall.model.product.repository.ProductRepository;
+import com.nhnacademy.shoppingmall.model.product.service.ProductService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
@@ -17,12 +18,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(int productId) {
         Optional<Product> productOptional = productRepository.findById(productId);
+        return productOptional.orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + productId));
+    }
 
-        if(productOptional.isPresent()){
-            return productOptional.get();
-        } else{
-            throw  new ProductNotFoundException("Product not found with id: " + productId);
-        }
+    @Override
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
 
     @Override

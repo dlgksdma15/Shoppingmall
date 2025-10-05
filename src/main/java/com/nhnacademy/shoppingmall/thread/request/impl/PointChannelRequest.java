@@ -2,8 +2,8 @@ package com.nhnacademy.shoppingmall.thread.request.impl;
 
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
 import com.nhnacademy.shoppingmall.thread.request.ChannelRequest;
-import com.nhnacademy.shoppingmall.user.domain.User;
-import com.nhnacademy.shoppingmall.user.repository.UserRepository;
+import com.nhnacademy.shoppingmall.model.user.domain.User;
+import com.nhnacademy.shoppingmall.model.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.nhnacademy.shoppingmall.product.domain;
+package com.nhnacademy.shoppingmall.model.product.domain;
 
 import java.util.Objects;
 
@@ -7,12 +7,12 @@ public class Product {
     private String userId; // FK
     private int categoryId; // FK
     private String productName;
-    private String productNumber;
+    private int productNumber;
     private String productImage;
     private int productUnitCost;
     private String productDescription;
 
-    public Product(int productId, String userId, int categoryId, String productName, String productNumber, String productImage, int productUnitCost, String productDescription) {
+    public Product(int productId, String userId, int categoryId, String productName, int productNumber, String productImage, int productUnitCost, String productDescription) {
         this.productId = productId;
         this.userId = userId;
         this.categoryId = categoryId;
@@ -55,11 +55,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductNumber() {
+    public int getProductNumber() {
         return productNumber;
     }
 
-    public void setProductNumber(String productNumber) {
+    public void setProductNumber(int productNumber) {
         this.productNumber = productNumber;
     }
 
@@ -90,7 +90,7 @@ public class Product {
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Product product)) return false;
-        return productId == product.productId && categoryId == product.categoryId && productUnitCost == product.productUnitCost && Objects.equals(userId, product.userId) && Objects.equals(productName, product.productName) && Objects.equals(productNumber, product.productNumber) && Objects.equals(productImage, product.productImage) && Objects.equals(productDescription, product.productDescription);
+        return productId == product.productId && categoryId == product.categoryId && productNumber == product.productNumber && productUnitCost == product.productUnitCost && Objects.equals(userId, product.userId) && Objects.equals(productName, product.productName) && Objects.equals(productImage, product.productImage) && Objects.equals(productDescription, product.productDescription);
     }
 
     @Override
@@ -98,4 +98,17 @@ public class Product {
         return Objects.hash(productId, userId, categoryId, productName, productNumber, productImage, productUnitCost, productDescription);
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", userId='" + userId + '\'' +
+                ", categoryId=" + categoryId +
+                ", productName='" + productName + '\'' +
+                ", productNumber=" + productNumber +
+                ", productImage='" + productImage + '\'' +
+                ", productUnitCost=" + productUnitCost +
+                ", productDescription='" + productDescription + '\'' +
+                '}';
+    }
 }

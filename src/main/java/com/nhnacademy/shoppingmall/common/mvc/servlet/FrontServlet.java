@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Slf4j
 @WebServlet(name = "frontServlet",urlPatterns = {"*.do"})
+@MultipartConfig // 이미지 업로드 때문에 추가
 public class FrontServlet extends HttpServlet {
     private ControllerFactory controllerFactory;
     private ViewResolver viewResolver;

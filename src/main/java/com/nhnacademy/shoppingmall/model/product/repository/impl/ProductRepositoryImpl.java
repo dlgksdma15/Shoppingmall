@@ -1,8 +1,8 @@
-package com.nhnacademy.shoppingmall.product.repository.impl;
+package com.nhnacademy.shoppingmall.model.product.repository.impl;
 
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
-import com.nhnacademy.shoppingmall.product.domain.Product;
-import com.nhnacademy.shoppingmall.product.repository.ProductRepository;
+import com.nhnacademy.shoppingmall.model.product.domain.Product;
+import com.nhnacademy.shoppingmall.model.product.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
@@ -30,7 +30,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             psmt.setString(2,product.getUserId());
             psmt.setInt(3,product.getCategoryId());
             psmt.setString(4,product.getProductName());
-            psmt.setString(5,product.getProductNumber());
+            psmt.setInt(5,product.getProductNumber());
             psmt.setString(6,product.getProductImage());
             psmt.setInt(7,product.getProductUnitCost());
             psmt.setString(8,product.getProductDescription());
@@ -60,7 +60,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         try(PreparedStatement psmt = connection.prepareStatement(sql)){
             psmt.setString(1,product.getProductName());
-            psmt.setString(2,product.getProductNumber());
+            psmt.setInt(2,product.getProductNumber());
             psmt.setString(3,product.getProductImage());
             psmt.setInt(4,product.getProductUnitCost());
             psmt.setString(5,product.getProductDescription());
@@ -120,7 +120,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                             rs.getString("user_id"),
                             rs.getInt("category_id"),
                             rs.getString("product_name"),
-                            rs.getString("product_number"),
+                            rs.getInt("product_number"),
                             rs.getString("product_image"),
                             rs.getInt("product_unit_cost"),
                             rs.getString("product_description")
@@ -155,7 +155,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                             rs.getString("user_id"),
                             rs.getInt("category_id"),
                             rs.getString("product_name"),
-                            rs.getString("product_number"),
+                            rs.getInt("product_number"),
                             rs.getString("product_image"),
                             rs.getInt("product_unit_cost"),
                             rs.getString("product_description")
@@ -191,7 +191,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                             rs.getString("user_id"),
                             rs.getInt("category_id"),
                             rs.getString("product_name"),
-                            rs.getString("product_number"),
+                            rs.getInt("product_number"),
                             rs.getString("product_image"),
                             rs.getInt("product_unit_cost"),
                             rs.getString("product_description")

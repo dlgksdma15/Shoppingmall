@@ -4,7 +4,6 @@ import com.nhnacademy.shoppingmall.common.util.DbUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 // Connection 할당 및 트랜잭션 생명주기 관리를 위해 쓰는 DbConnectionThreadLocal

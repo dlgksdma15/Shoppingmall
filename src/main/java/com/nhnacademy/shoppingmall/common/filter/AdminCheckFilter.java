@@ -1,6 +1,6 @@
 package com.nhnacademy.shoppingmall.common.filter;
 
-import com.nhnacademy.shoppingmall.user.domain.User;
+import com.nhnacademy.shoppingmall.model.user.domain.User;
 import lombok.extern.slf4j.Slf4j;
 
 import jakarta.servlet.*;
@@ -22,6 +22,7 @@ public class AdminCheckFilter extends HttpFilter {
         HttpSession session = req.getSession(false);
 
         if(session == null || session.getAttribute("user") == null){
+
             res.sendError(HttpServletResponse.SC_FORBIDDEN); // 403
         }
 

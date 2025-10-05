@@ -1,8 +1,8 @@
-package com.nhnacademy.shoppingmall.user.repository.impl;
+package com.nhnacademy.shoppingmall.model.user.repository.impl;
 
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
-import com.nhnacademy.shoppingmall.user.domain.User;
-import com.nhnacademy.shoppingmall.user.repository.UserRepository;
+import com.nhnacademy.shoppingmall.model.user.domain.User;
+import com.nhnacademy.shoppingmall.model.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
