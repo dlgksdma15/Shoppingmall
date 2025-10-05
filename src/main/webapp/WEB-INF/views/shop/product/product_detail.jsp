@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
+  <c:if test="${param.error == 'duplicate'}">
+    <div class="alert alert-warning">
+      이미 장바구니에 담긴 상품입니다.
+    </div>
+  </c:if>
+
   <div class="row">
     <div class="col-md-6">
       <img src="${pageContext.request.contextPath}${product.productImage}"
@@ -17,6 +23,19 @@
       <p>${product.productDescription}</p>
 
       <hr>
+
+      <!-- 로그인한 사용자만 장바구니 담기 가능 -->
+      <c:if test="${not empty sessionScope.user}">
+        <form action="/mypage/cart/add.do" method="post" class="mb-3">
+          <input type="hidden" name="productId" value="${product.productId}">
+          <div class="input-group mb-3" style="max-width: 200px;">
+            <label class="input-group-text">수량</label>
+            <input type="number" class="form-control" name="quantity"
+                   value="1" min="1" max="${product.productNumber}" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-lg">장바구니 담기</button>
+        </form>
+      </c:if>
 
       <div class="btn-group" role="group">
         <a href="/index.do" class="btn btn-secondary">목록으로</a>

@@ -87,6 +87,49 @@ CREATE TABLE OrderDetails (
                               CONSTRAINT fk_OrderDetails_Products FOREIGN KEY(ProductID) REFERENCES Products(ProductID)
 );
 
+-- 장바구니 테이블
+CREATE TABLE IF NOT EXISTS Cart (
+                                    cart_id INT AUTO_INCREMENT PRIMARY KEY,
+                                    user_id VARCHAR(50) NOT NULL,
+                                    product_id INT NOT NULL,
+                                    quantity INT NOT NULL DEFAULT 1,
+                                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+                                    FOREIGN KEY (product_id) REFERENCES Products(product_id) ON DELETE CASCADE,
+                                    UNIQUE KEY unique_user_product (user_id, product_id)
+);
+drop table Cart;
+drop table Products;
+drop table OrderItems;
+
+-- 주문 테이블
+CREATE TABLE IF NOT EXISTS Orders (
+                                      order_id INT AUTO_INCREMENT PRIMARY KEY,
+                                      user_id VARCHAR(50) NOT NULL,
+                                      total_amount INT NOT NULL,
+                                      ordered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                      FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+-- 주문 상품 테이블
+CREATE TABLE IF NOT EXISTS OrderItems (
+                                          order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+                                          order_id INT NOT NULL,
+                                          product_id INT NOT NULL,
+                                          product_name VARCHAR(200) NOT NULL,
+                                          quantity INT NOT NULL,
+                                          unit_price INT NOT NULL,
+                                          FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
+                                          FOREIGN KEY (product_id) REFERENCES Products(product_id) ON DELETE CASCADE
+);
+
+-- 인덱스 생성
+CREATE INDEX idx_cart_user_id ON Cart(user_id);
+CREATE INDEX idx_orders_user_id ON Orders(user_id);
+CREATE INDEX idx_orders_ordered_at ON Orders(ordered_at DESC);
+CREATE INDEX idx_order_items_order_id ON OrderItems(order_id);
+
+
 CREATE TABLE ShoppingCart (
                               RecordID	int	auto_increment,
                               CartID		nvarchar(150),
@@ -97,3 +140,5 @@ CREATE TABLE ShoppingCart (
                               CONSTRAINT pk_RecordID PRIMARY KEY(RecordID),
                               CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID) REFERENCES Products(ProductID)
 );
+
+

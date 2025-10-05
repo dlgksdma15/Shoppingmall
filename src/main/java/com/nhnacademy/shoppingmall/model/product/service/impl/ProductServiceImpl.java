@@ -40,4 +40,15 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(String productId) {
         productRepository.deleteByProductId(Long.parseLong(productId));
     }
+
+//    @Override
+//    public List<Product> getProducts(int page, int pageSize) {
+//        int offset = (page - 1) * pageSize;
+//        return productRepository.findLatestProducts(offset, pageSize);
+//    }
+
+    @Override
+    public long getProductCount() {
+        return productRepository.totalCount();
+    }
 }

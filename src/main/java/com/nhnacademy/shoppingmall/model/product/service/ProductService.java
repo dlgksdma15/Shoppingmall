@@ -9,6 +9,10 @@ public interface ProductService {
 
     List<Product> getProducts();
 
+//    List<Product> getProducts(int page, int pageSize);
+
+    long getProductCount();
+
     void saveProduct(Product product);
 
     void updateProduct(Product product);
