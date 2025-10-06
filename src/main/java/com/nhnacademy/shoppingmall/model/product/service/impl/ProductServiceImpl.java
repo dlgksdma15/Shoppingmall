@@ -20,6 +20,15 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> productOptional = productRepository.findById(productId);
         return productOptional.orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + productId));
     }
+    @Override
+    public List<Product> getProductsWithPaging(int offset, int limit) {
+        return productRepository.findLatestProducts(offset, limit);
+    }
+
+    @Override
+    public long getTotalProductCount() {
+        return productRepository.totalCount();
+    }
 
     @Override
     public List<Product> getProducts() {
@@ -41,11 +50,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteByProductId(Long.parseLong(productId));
     }
 
-//    @Override
-//    public List<Product> getProducts(int page, int pageSize) {
-//        int offset = (page - 1) * pageSize;
-//        return productRepository.findLatestProducts(offset, pageSize);
-//    }
 
     @Override
     public long getProductCount() {

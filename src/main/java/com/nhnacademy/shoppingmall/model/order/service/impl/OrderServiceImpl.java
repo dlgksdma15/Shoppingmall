@@ -14,7 +14,6 @@ import com.nhnacademy.shoppingmall.model.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j

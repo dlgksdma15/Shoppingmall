@@ -10,6 +10,9 @@ public interface ProductService {
     List<Product> getProducts();
 
 //    List<Product> getProducts(int page, int pageSize);
+// 페이징 추가
+    List<Product> getProductsWithPaging(int offset, int limit);
+    long getTotalProductCount();
 
     long getProductCount();
 

@@ -177,7 +177,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         String sql = """
                 select product_id, user_id, category_id, product_name, product_number,
                 product_image, product_unit_cost, product_description from Products
-                order by created_at desc limit ?, ?
+                order by product_id desc limit ?, ?
                 """;
         log.debug("SQL: {}", sql);
 
