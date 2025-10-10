@@ -2,13 +2,3 @@
 
 * link:docs/03.문제/1.설명.adoc[docs/1 ~ 15]  순서대로 읽고 개발합니다.
 
-https://github.com/user-attachments/assets/f0a1ad5c-5604-4b7e-aa9c-67f669aab903
-<<<<<<< HEAD:README.adoc
-=======
-
-
-
-
-
-
->>>>>>> 3284572 (ERD 추가):README.md
